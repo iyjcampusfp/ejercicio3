@@ -6,11 +6,12 @@ public class Password {
     //                     Atributos
     private int longitud;
     private String contraseña;
-    
+    //=============================================================================//
     //                     Constructores
     //Constructor por defecto
     public Password(){
         generarPassword();
+        setLongitud(8);//Por defecto es igual a 8
     }
     
     //Constructor de longitud
@@ -18,7 +19,7 @@ public class Password {
         setLongitud(longitud);
         generarPassword();
     }
-    
+    //=============================================================================//
     //                      Métodos
     //                  Getters y setters
     public int getLongitud(){
@@ -94,27 +95,27 @@ public class Password {
         for( int i=0;i<getLongitud();i++ ){
             //Generar un número aleatorio cada vuelta entre 1 y 3,
             //dependiendo de ese número aleatorio meterá
-            //en el array un número, una mayúscula o una
+            //en la variable un número, una mayúscula o una
             //minúscula.
             
             //Después, generar otro número aleatorio dependiendo de lo larga
             //que sea la cadena de números, mayúsculas o minúsculas y añadir
-            //esa posición al array de listaContraseña
+            //esa posición a la variable de listaContraseña.
             
             int aleatorio1 = (int) (Math.random()*3)+1;
             int aleatorio2;
             
             if( aleatorio1==1 ){
-                //Mete un número en el array
+                //Añade un número en la variable
                 aleatorio2 = (int) (Math.random()*losnumeros.length());
                 
                 contraseña += losnumeros.charAt(aleatorio2);
             }else if( aleatorio1==2 ){
-                //Mete una mayúscula en el array
+                //Añade una mayúscula en la variable
                 aleatorio2 = (int) (Math.random()*lasmayusculas.length());
                 contraseña += lasmayusculas.charAt(aleatorio2);
             }else if( aleatorio1==3 ){
-                //Mete una minúscula en el array
+                //Añade una minúscula en la variable
                 aleatorio2 = (int) (Math.random()*lasminusculas.length());
                 contraseña += lasminusculas.charAt(aleatorio2);
             }
