@@ -1,19 +1,22 @@
 package metodos;
 
+import java.util.regex.Pattern;
+
 public class Password {
     //                     Atributos
-    private int longitud = 8;
+    private int longitud;
     private String contraseña;
     
     //                     Constructores
     //Constructor por defecto
     public Password(){
-        
+        generarPassword();
     }
     
     //Constructor de longitud
     public Password( int longitud ){
-        this.longitud = longitud;
+        setLongitud(longitud);
+        generarPassword();
     }
     
     //                      Métodos
@@ -48,9 +51,35 @@ public class Password {
         boolean fuerte = false;
         
         //Realizar un contador de números, mayusculas y minusculas
-        String losnumeros = "0123456789";
-        String lasmayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-        String lasminusculas = "abcdefghijklmnñopqrstuvwxyz";
+        int contador_numeros = 0;
+
+        int contador_mayusculas = 0;
+       
+        int contador_minusculas = 0;
+        
+        String contraseña[] = getContraseña().split("");
+        
+        //1 bucle que tenga 3 ifs, y añada +1 al contador de numeros, mayusculas
+        //o minusculas
+        
+        for(int i=0;i<contraseña.length;i++){
+            if( Pattern.matches("[0-9]",contraseña[i]) ){
+                contador_numeros++;
+            }
+            
+            if( Pattern.matches("[A-Z]",contraseña[i]) || "Ñ".equals(contraseña[i]) ){
+                contador_mayusculas++;
+                
+            }
+            
+            if( Pattern.matches("[a-z]",contraseña[i]) || "ñ".equals(contraseña[i]) ){
+                contador_minusculas++;
+            }
+        }
+        
+        if( contador_mayusculas>4 && contador_minusculas>1 && contador_numeros>5 ){
+            fuerte = true;
+        }
         
         return fuerte;
     }
